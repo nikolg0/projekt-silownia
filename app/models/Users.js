@@ -37,29 +37,16 @@ const User = new mongoose.Schema(
         ref: "Ticket",
       },
     ],
+
+    role: {
+      enum: ["user", "admin"],
+      type: String,
+    },
   },
+
   {
     timestamps: true,
   }
 );
-
-const ROLE = {
-  ADMIN: "admin",
-  USER: "user",
-};
-
-module.exports = {
-  ROLE: ROLE,
-  users: [
-    { id: 1, name: "Ben", role: ROLE.ADMIN },
-    { id: 2, name: "Benny", role: ROLE.USER },
-    { id: 3, name: "Buck", role: ROLE.USER },
-  ],
-  tasks: [
-    { id: 1, name: "Ben's taks", userId: 1 },
-    { id: 2, name: "Benny's tasks", userId: 2 },
-    { id: 3, name: "Buck's tasks", userId: 3 },
-  ],
-};
 
 module.exports = mongoose.model("User", User);
