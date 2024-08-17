@@ -1,0 +1,23 @@
+<h1>Zaloguj się</h1>
+
+<form action="/auth/logowanie" method="POST">
+
+  <label for="email">Email:</label>
+  <input type="text" id="email" name="email" value="{{user.email}}" required />
+  <br /><br />
+
+  <label for="password">Hasło:</label>
+  <input
+    type="password"
+    id="password"
+    name="password"
+    value="{{user.password}}"
+    required
+  />
+  <br /><br />
+
+  <button type="submit">Zaloguj</button>
+
+</form>
+
+<p>Nie masz jeszcze konta? <a href="/auth/rejestracja">Zarejestruj się.</a></p>
