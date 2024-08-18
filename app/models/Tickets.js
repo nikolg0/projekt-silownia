@@ -2,6 +2,7 @@ const mongoose = require("moongose");
 
 const Ticket = new mongoose.Schema({
   duration: Date,
+  price: Number,
   packOption: {
     standard: String,
     medium: String,

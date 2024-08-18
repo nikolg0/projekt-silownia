@@ -11,4 +11,4 @@ const TicketOrder = new mongoose.Schema({
   ],
 });
 
-module.exports = mongoose.model("TickerOrder", TicketOrder);
+module.exports = mongoose.model("TicketOrder", TicketOrder);
