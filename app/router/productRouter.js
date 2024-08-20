@@ -18,4 +18,10 @@ router.get("/produkty/dodaj", (_req, res) => {
 
 router.post("/produkty/dodaj", productController.create);
 
+router.get("/produkty/edytuj/:id", productController.editForm);
+
+router.post("/produkty/edytuj/:id", productController.update);
+
+router.get("/produkty/usuwanie/:id", productController.delete);
+
 module.exports = router;
