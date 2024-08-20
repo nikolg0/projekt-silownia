@@ -59,6 +59,6 @@ module.exports = {
 
   logout: (req, res) => {
     res.clearCookie("AuthToken");
-    res.redirect("/auth/logowanie");
+    res.redirect("/");
   },
 };

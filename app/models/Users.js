@@ -24,7 +24,9 @@ const User = new mongoose.Schema(
       required: true,
     },
 
-    birthdate: Date,
+    birthDate: Date,
+
+    phoneNumber: Number,
 
     productOrderIds: [
       {

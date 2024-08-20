@@ -10,6 +10,8 @@ module.exports = (role) => {
       console.log("token zweryfikowany" + verified._id);
       User.findById(verified._id)
         .then((user) => {
+          res.locals.userId = user._id;
+          res.locals.userName = user.name;
           if (user.role !== role) {
             res.status(401);
             return res.send("Dostęp nie przyznany");

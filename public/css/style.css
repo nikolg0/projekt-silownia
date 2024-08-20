@@ -21,6 +21,10 @@ i {
   font-size: 0.7em;
 }
 
+a {
+  color: black;
+}
+
 .dropdown-items a {
   color: white;
   padding: 20px 40px;

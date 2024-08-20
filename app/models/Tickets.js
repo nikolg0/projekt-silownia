@@ -1,4 +1,4 @@
-const mongoose = require("moongose");
+const mongoose = require("mongoose");
 
 const Ticket = new mongoose.Schema({
   duration: Date,

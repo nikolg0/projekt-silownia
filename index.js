@@ -16,29 +16,19 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-const checkRole = require("./app/middlewares/roleMiddleware");
+const userRouter = require("./app/router/userRouter");
 
-const userController = require("./app/controllers/userController");
+const productRouter = require("./app/router/productRouter");
+
+const checkRole = require("./app/middlewares/roleMiddleware");
 
 app.get("/", (req, res) => {
   res.render("customerViews/mainPage");
 });
 
-app.get("/dashboard", checkRole("admin"), (req, res) => {
-  res.render("userViews/dashboard");
-});
+app.use("/dashboard", productRouter);
 
-app.get("/auth/logowanie", (req, res) => {
-  res.render("userViews/loginUser");
-});
-
-app.post("/auth/logowanie", userController.login);
-
-app.get("/auth/rejestracja", (req, res) => {
-  res.render("userViews/signupUser");
-});
-
-app.post("/auth/rejestracja", userController.create);
+app.use("/auth", userRouter);
 
 app.listen(8008, function () {
   console.log("Serwer działa");
