@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Panel administracyjny</h1>
+  <h2>Lista produktów</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nazwa</th>
+        <th>Cena</th>
+        <th>Waga</th>
+        <th>Ilość</th>
+        <th>Usuń</th>
+        <th>Edytuj</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each products}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.price}}</td>
+          <td>{{this.weight.value}} {{this.weight.unit}}</td>
+          <td>{{this.quantity}}</td>
+          <td> <a href="/dashboard/produkty/usuwanie/{{_id}}">Usuń</a></td>
+          <td> <a href="/dashboard/produkty/edytuj/{{_id}}">Edytuj</a></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <a class="btn btn-primary" href="/dashboard/produkty/dodaj">Dodaj produkt</a>
+</div>

@@ -1,27 +1,4 @@
-<h1>Panel administracyjny</h1>
-<h2>Lista produktów</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Nazwa</th>
-      <th>Cena</th>
-      <th>Waga</th>
-      <th>Ilość</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    {{#each products}}
-      <tr>
-        <td>{{this.name}}</td>
-        <td>{{this.price}}</td>
-        <td>{{this.weight}}</td>
-        <td>{{this.quantity}}</td>
-        <td> <a href="/dashboard/produkty/usuwanie/{{_id}}">Usuń</a></td>
-        <td> <a href="/dashboard/produkty/edytuj/{{_id}}">Edytuj</a></td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
-
-<a href="/dashboard/produkty/dodaj">Dodaj produkt</a>
+<div class="container">
+    <a href="/dashboard/produkty">Zarządzaj produktami</a>
+    <a href="/dashboard/tickety">Zarządzaj ticketami</a>
+</div>

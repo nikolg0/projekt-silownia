@@ -5,7 +5,7 @@ module.exports = {
     Product.find({})
       .lean()
       .then((products) => {
-        res.render("userViews/dashboard", {
+        res.render("userViews/dashboardProductsList", {
           products: products,
         });
       })
@@ -15,9 +15,14 @@ module.exports = {
   },
 
   create: (req, res) => {
-    const { name, price } = req.body;
+    const { name, price, weight, quantity, unit } = req.body;
 
-    const newProduct = new Product({ name, price });
+    const newProduct = new Product({
+      name,
+      price,
+      weight: { value: weight, unit: unit },
+      quantity,
+    });
     newProduct
       .save()
       .then(() => {

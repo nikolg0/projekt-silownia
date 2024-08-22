@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   res.render("customerViews/mainPage");
 });
 
-app.use("/dashboard", productRouter);
+app.use("/dashboard", checkRole("admin"), productRouter);
 
 app.use("/auth", userRouter);
 

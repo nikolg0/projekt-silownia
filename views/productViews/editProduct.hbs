@@ -2,20 +2,24 @@
 
 <form action="/dashboard/produkty/edytuj/{{_id}}" method="POST">
   <label for="name">Nazwa</label><br />
-  <input type="text" id="name" name="name" {{product.name}} required />
+  <input type="text" id="name" name="name" value={{name}} required />
   <br /><br />
   <label for="name">Cena</label><br />
-  <input type="text" id="price" name="price" {{product.price}} required />
+  <input type="text" id="price" name="price" value={{price}} required />
   <br /><br />
   <label for="name">Waga</label><br />
-  <input type="text" id="weight" name="weight" {{product.weight}} required />
+  <input type="text" id="weight" name="weight" value={{weight}} required />
+  <select name="unit">
+    <option value="g">Gram</option>
+    <option value="kg">Kilogram</option>
+  </select>
   <br /><br />
   <label for="name">Ilość</label><br />
   <input
     type="text"
     id="quantity"
     name="quantity"
-    {{product.quantity}}
+    value={{quantity}}
     required
   />
   <br /><br />
