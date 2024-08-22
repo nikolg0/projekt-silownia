@@ -5,7 +5,7 @@ module.exports = {
     Product.find({})
       .lean()
       .then((products) => {
-        res.render("userViews/dashboardProductsList", {
+        res.render("dashboardViews/dashboardProductsList", {
           products: products,
         });
       })
@@ -46,7 +46,7 @@ module.exports = {
   editForm: (req, res) => {
     Product.findById(req.params.id)
       .then((product) => {
-        res.render("productViews/editProduct", product);
+        res.render("dashboardViews/editProduct", product);
       })
       .catch((err) => {
         res.send(err);

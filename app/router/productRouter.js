@@ -3,13 +3,13 @@ const router = express.Router();
 const productController = require("../controllers/productController");
 
 router.get("/", (req, res) => {
-  res.render("userViews/dashboard");
+  res.render("dashboardViews/dashboard");
 });
 
 router.get("/produkty", productController.index);
 
 router.get("/produkty/dodaj", (_req, res) => {
-  res.render("productViews/addProduct");
+  res.render("dashboardViews/addProduct");
 });
 
 router.post("/produkty/dodaj", productController.create);
