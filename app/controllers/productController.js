@@ -15,13 +15,16 @@ module.exports = {
   },
 
   create: (req, res) => {
-    const { name, price, weight, quantity, unit } = req.body;
+    const { name, price, weight, quantity, unit, description } = req.body;
+    const image = req.file.filename;
 
     const newProduct = new Product({
       name,
       price,
       weight: { value: weight, unit: unit },
       quantity,
+      description,
+      images: [image],
     });
     newProduct
       .save()

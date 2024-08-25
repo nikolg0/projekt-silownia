@@ -5,9 +5,10 @@ const Product = new mongoose.Schema({
   price: Number,
   weight: {
     value: Number,
-    unit: String
+    unit: String,
   },
   quantity: Number,
+  description: String,
   images: [String],
 });
 
