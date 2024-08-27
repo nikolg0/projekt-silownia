@@ -15,6 +15,14 @@ body {
   padding: 15px;
 }
 
+img {
+  max-width: 100%;
+}
+
+td img {
+  height: 100%;
+}
+
 a,
 i {
   text-decoration: none;

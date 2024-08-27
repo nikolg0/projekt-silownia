@@ -21,7 +21,11 @@ router.post(
 
 router.get("/produkty/edytuj/:id", productController.editForm);
 
-router.post("/produkty/edytuj/:id", productController.update);
+router.post(
+  "/produkty/edytuj/:id",
+  upload.single("image"),
+  productController.update
+);
 
 router.get("/produkty/usuwanie/:id", productController.delete);
 

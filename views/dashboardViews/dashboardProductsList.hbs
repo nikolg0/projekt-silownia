@@ -17,12 +17,12 @@
     <tbody>
       {{#each products}}
         <tr>
-          <td>{{this.name}}</td>
-          <td>{{this.price}}</td>
-          <td>{{this.weight.value}} {{this.weight.unit}}</td>
-          <td>{{this.quantity}}</td>
-          <td>{{this.description}}</td>
-          <td><img src="/uploads/{{this.image}}" /></td>
+          <td>{{name}}</td>
+          <td>{{price}}</td>
+          <td>{{weight.value}} {{this.weight.unit}}</td>
+          <td>{{quantity}}</td>
+          <td>{{description}}</td>
+          <td><img src="/uploads/{{images.0}}" /></td>
           <td> <a href="/dashboard/produkty/usuwanie/{{_id}}">Usuń</a></td>
           <td> <a href="/dashboard/produkty/edytuj/{{_id}}">Edytuj</a></td>
         </tr>
