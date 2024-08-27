@@ -17,6 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
+const customerController = require("./app/controllers/customerController");
+
 const userRouter = require("./app/router/userRouter");
 
 const productRouter = require("./app/router/productRouter");
@@ -26,6 +28,8 @@ const checkRole = require("./app/middlewares/roleMiddleware");
 app.get("/", (req, res) => {
   res.render("customerViews/mainPage");
 });
+
+app.get("/produkty", customerController.index);
 
 app.use("/dashboard", checkRole("admin"), productRouter);
 

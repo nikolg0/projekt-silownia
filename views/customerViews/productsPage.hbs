@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each products}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{description}}</td>
+        <td><img src="/uploads/{{images}}" /></td>
+        <td>{{price}}</td>
+        <td> <a class="btn btn-primary">Dodaj do koszyka</a></td>
+
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
