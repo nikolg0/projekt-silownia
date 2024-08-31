@@ -1,6 +1,12 @@
 body {
   font-family: "Oswald", sans-serif;
   font-weight: 500;
+
+  /* background-image: url("/images/gym1.jpg");
+  background-color: #000000;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 
 .nav {
@@ -23,6 +29,14 @@ td img {
   height: 100%;
 }
 
+.uploadtd {
+  width: 200px;
+}
+
+.main-pagetd {
+  width: 300px;
+}
+
 a,
 i {
   text-decoration: none;
@@ -38,4 +52,13 @@ i {
 a:hover,
 i:hover {
   color: #ef7f1a;
+}
+
+.carousel-inner {
+  height: 750px;
+}
+
+.main-list {
+  text-align: center;
+  font-size: 1.6em;
 }
