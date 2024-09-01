@@ -12,7 +12,13 @@
           <td class="main-pagetd">{{description}}</td>
           <td class="main-pagetd"><img src="/uploads/{{images}}" /></td>
           <td>{{price}} zł</td>
-          <td> <a class="btn btn-primary">Dodaj do koszyka</a></td>
+          <td>
+            <form action="/do-koszyka" method="POST">
+              <input type="hidden" name="productId" value="{{_id}}" />
+              <input type="number" name="quantity" value="1" min="1" />
+              <button type="submit" class="btn btn-primary">Dodaj do koszyka</button>
+            </form>
+          </td>
 
         </tr>
       {{/each}}

@@ -25,6 +25,11 @@ const productRouter = require("./app/router/productRouter");
 
 const checkRole = require("./app/middlewares/roleMiddleware");
 
+const {
+  cartStatus,
+  addToCart,
+} = require("./app/middlewares/shoppingCartMiddleware");
+
 app.get("/", (req, res) => {
   res.render("customerViews/mainPage");
 });
@@ -34,6 +39,14 @@ app.get("/produkty", customerController.index);
 app.use("/dashboard", checkRole("admin"), productRouter);
 
 app.use("/auth", userRouter);
+
+app.use(cartStatus);
+
+app.post("/do-koszyka", addToCart);
+
+app.get("/", (req, res) => {
+  res.render("index", { cartItemCount: res.locals.cartItemCount });
+});
 
 app.listen(8008, function () {
   console.log("Serwer działa");

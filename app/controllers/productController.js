@@ -57,7 +57,10 @@ module.exports = {
   },
 
   update: (req, res) => {
-    Product.findByIdAndUpdate(req.params.id, {...req.body, images: [req.file.filename]})
+    Product.findByIdAndUpdate(req.params.id, {
+      ...req.body,
+      images: [req.file.filename],
+    })
       .then((product) => {
         res.redirect("/dashboard/produkty");
       })

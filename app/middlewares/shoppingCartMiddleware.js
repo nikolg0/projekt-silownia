@@ -1,17 +1,74 @@
 const User = require("../models/Users");
 const cookieParser = require("cookie-parser");
+const ShoppingCart = require("../models/ShoppingCart");
 
 module.exports = {
-  addToCart: (req, res, next) => {
-    const userId = req.user ? req.user.userId : null;
-    if (userId) {
-      const cart = req.cookies[`cart_${userId}`]
-        ? JSON.parse(req.cookies[`cart_${userId}`])
-        : [];
-      res.locals.cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  cartStatus: async (req, res, next) => {
+    let cartId = req.cookies.cartId;
+
+    if (cartId) {
+      try {
+        let cart = await ShoppingCart.findById(cartId).populate(
+          "products.productId"
+        );
+
+        if (!cart) {
+          res.clearCookie("cartId");
+          res.locals.cartItemCount = 0;
+        } else {
+          const cartItemCount = cart.products.reduce(
+            (total, product) => total + product.quantity,
+            0
+          );
+          res.locals.cartItemCount = cartItemCount;
+        }
+      } catch (err) {
+        console.error("Error fetching cart:", err);
+        res.status(500).send("Internal server error");
+        return;
+      }
     } else {
-      res.locals.cartCount = 0;
+      res.locals.cartItemCount = 0;
     }
+
     next();
+  },
+
+  addToCart: async (req, res) => {
+    const userId = req.user ? req.user._id : null;
+    const { productId, quantity } = req.body;
+
+    let cartId = req.cookies.cartId;
+    let cart;
+
+    if (cartId) {
+      cart = await ShoppingCart.findById(cartId);
+    }
+
+    if (!cart) {
+      cart = new ShoppingCart({
+        userId,
+        products: [],
+      });
+    }
+
+    const existingProductIndex = cart.products.findIndex(
+      (p) => p.productID.toString() === productId
+    );
+
+    if (existingProductIndex !== -1) {
+      cart.products[existingProductIndex].quantity += quantity;
+    } else {
+      cart.products.push({
+        productID: productId,
+        quantity: quantity,
+      });
+    }
+
+    await cart.save();
+
+    res.cookie("cartId", cart._id, { httpOnly: true });
+
+    await this.cartStatus(req, res, () => {});
   },
 };
