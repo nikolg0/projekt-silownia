@@ -3,7 +3,7 @@ const app = express();
 const hbs = require("express-handlebars");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const multer = require("multer");
+const cartStatus = require("./app/middlewares/cartStatusMiddleware");
 
 mongoose.connect("mongodb://127.0.0.1:27017/projekt-silownia");
 
@@ -17,36 +17,19 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-const customerController = require("./app/controllers/customerController");
-
 const userRouter = require("./app/router/userRouter");
 
 const productRouter = require("./app/router/productRouter");
 
 const checkRole = require("./app/middlewares/roleMiddleware");
 
-const {
-  cartStatus,
-  addToCart,
-} = require("./app/middlewares/shoppingCartMiddleware");
-
-app.get("/", (req, res) => {
-  res.render("customerViews/mainPage");
-});
-
-app.get("/produkty", customerController.index);
+const shoppingCartRouter = require("./app/router/shoppingCartRouter");
 
 app.use("/dashboard", checkRole("admin"), productRouter);
 
 app.use("/auth", userRouter);
 
-app.use(cartStatus);
-
-app.post("/do-koszyka", addToCart);
-
-app.get("/", (req, res) => {
-  res.render("index", { cartItemCount: res.locals.cartItemCount });
-});
+app.use("/", shoppingCartRouter);
 
 app.listen(8008, function () {
   console.log("Serwer działa");

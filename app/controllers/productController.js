@@ -6,7 +6,7 @@ module.exports = {
       .lean()
       .then((products) => {
         res.render("dashboardViews/dashboardProductsList", {
-          products: products,
+          products: products
         });
       })
       .catch((err) => {
