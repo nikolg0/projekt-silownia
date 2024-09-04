@@ -1,11 +1,10 @@
 const ShoppingCart = require("../models/ShoppingCart");
 
-
 module.exports = {
-
   addToCart: async (req, res) => {
     const userId = req.user ? req.user._id : null;
-    const { productId, quantity } = req.body;
+    const { productId } = req.body;
+    const quantity = Number(req.body.quantity);
 
     const cartId = req.cookies.cartId;
     let cart;
