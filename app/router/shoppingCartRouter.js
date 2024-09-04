@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const cartStatus = require("../middlewares/cartStatusMiddleware");
 const customerController = require("../controllers/customerController");
 const shoppingCartController = require("../controllers/shoppingCartController");

@@ -2,17 +2,22 @@ const ShoppingCart = require("../models/ShoppingCart");
 
 module.exports = {
   index: (req, res) => {
-    ShoppingCart.find({})
+    const carts = res.locals.carts;
+
+    console.log("koszyczek", carts);
+
+    /* ShoppingCart.find({})
       .lean()
-      .then((carts) => {
-        res.render("customerViews/shoppingCartView", {
-          carts: carts,
-        });
-      })
+      .then((carts) => { */
+    res.render("customerViews/shoppingCartView", {
+      carts: carts,
+      cartProductCount: res.locals.cartProductCount,
+    });
+  } /* )
       .catch((err) => {
         res.send(err);
       });
-  },
+  }, */,
 
   addToCart: async (req, res) => {
     const userId = req.user ? req.user._id : null;

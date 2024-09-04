@@ -31,8 +31,6 @@ app.use("/auth", userRouter);
 
 app.use("/", shoppingCartRouter);
 
-app.use(cartStatus);
-
 app.listen(8008, function () {
   console.log("Serwer działa");
 });
