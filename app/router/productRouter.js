@@ -8,7 +8,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/produkty", productController.index);
-router.get("/");
 
 router.get("/produkty/dodaj", (_req, res) => {
   res.render("dashboardViews/addProduct");

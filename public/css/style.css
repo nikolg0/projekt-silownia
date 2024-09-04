@@ -37,16 +37,15 @@ td img {
   width: 300px;
 }
 
-a,
 i {
+  font-size: 1.6em;
+}
+
+a {
   text-decoration: none;
   color: #1a1a1a;
   font-size: 2em;
   padding-top: 40px;
-}
-
-i {
-  font-size: 2.5em;
 }
 
 a:hover,

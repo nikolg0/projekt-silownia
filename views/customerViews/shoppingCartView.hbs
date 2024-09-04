@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Produkt</th>
+      <th></th>
+      <th>Cena</th>
+      <th>Ilość</th>
+    </tr>
+  </thead>
+
+  <tbody class="main-list">
+    {{#each carts}}
+      <tr>
+        <td class="main-pagetd"><img src="/uploads/{{images}}" /></td>
+        <td class="main-pagetd">{{name}}</td>
+        <td>{{price}} zł</td>
+        <td class="main-pagetd">{{quantity}}</td>
+        <td>
+          <a href="/produkty">Kontynuuj zakupy</a>
+        </td>
+
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

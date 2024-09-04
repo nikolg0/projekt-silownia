@@ -1,6 +1,19 @@
 const ShoppingCart = require("../models/ShoppingCart");
 
 module.exports = {
+  index: (req, res) => {
+    ShoppingCart.find({})
+      .lean()
+      .then((carts) => {
+        res.render("customerViews/shoppingCartView", {
+          carts: carts,
+        });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  },
+
   addToCart: async (req, res) => {
     const userId = req.user ? req.user._id : null;
     const { productId } = req.body;
