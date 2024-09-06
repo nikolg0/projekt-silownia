@@ -21,7 +21,6 @@ const ProductOrder = new mongoose.Schema({
   ],
   shippingAddress: {
     street: String,
-    suite: String,
     city: String,
     zipcode: String,
   },

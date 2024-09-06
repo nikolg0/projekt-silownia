@@ -1,17 +1,16 @@
 const ShoppingCart = require("../models/ShoppingCart");
 
 module.exports = {
-  index: (req, res) => {
-    const carts = res.locals.carts;
+  index: async (req, res) => {
+    const cartProducts = res.locals.carts;
+    const cartTotal = res.locals.cartTotal;
 
-    console.log("koszyczek", carts);
+    console.log(cartTotal);
 
-    /* ShoppingCart.find({})
-      .lean()
-      .then((carts) => { */
     res.render("customerViews/shoppingCartView", {
-      carts: carts,
+      cartProducts: cartProducts,
       cartProductCount: res.locals.cartProductCount,
+      cartTotal: cartTotal
     });
   } /* )
       .catch((err) => {

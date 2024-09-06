@@ -9,11 +9,11 @@
   </thead>
 
   <tbody class="main-list">
-    {{#each carts}}
+    {{#each cartProducts}}
       <tr>
-        <td class="main-pagetd"><img src="/uploads/{{product.images}}" /></td>
-        <td class="main-pagetd">{{productId.name}}</td>
-        <td>{{product.price}} zł</td>
+        <td class="main-pagetd"><img src="/uploads/{{images}}" /></td>
+        <td class="main-pagetd">{{name}}</td>
+        <td>{{price}} zł</td>
         <td class="main-pagetd">{{quantity}}</td>
         <td>
           <a href="/produkty">Kontynuuj zakupy</a>
@@ -21,5 +21,7 @@
 
       </tr>
     {{/each}}
+    <tr><td>Suma {{cartTotal}}</td>
+      <td> <a href="/kasa">Przejdź do kasy</a></td></tr>
   </tbody>
 </table>

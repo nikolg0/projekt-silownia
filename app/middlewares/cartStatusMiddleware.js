@@ -6,9 +6,9 @@ module.exports = () => {
 
     if (cartId) {
       try {
-        let cart = await ShoppingCart.findById(cartId).populate(
-          "products.productId"
-        );
+        let cart = await ShoppingCart.findById(cartId)
+          .lean()
+          .populate("products.productId");
 
         if (!cart) {
           res.clearCookie("cartId");
@@ -21,15 +21,19 @@ module.exports = () => {
           }, 0);
 
           const cartProducts = cart.products.map((item) => ({
-            productId: item.productId,
+            ...item.productId,
             quantity: item.quantity,
           }));
 
+          const cartTotal = cartProducts.reduce((total, product) => {
+            const multiply = product.price * product.quantity;
+            return total + multiply;
+          }, 0);
+
           res.locals.cartProductCount = cartProductCount;
           res.locals.carts = cartProducts;
+          res.locals.cartTotal = cartTotal;
         }
-
-        console.log("produkty w koszyku", res.locals.carts);
       } catch (err) {
         console.error("Error", err);
         res.status(500).send("Internal server error");
