@@ -3,7 +3,6 @@ const app = express();
 const hbs = require("express-handlebars");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const cartStatus = require("./app/middlewares/cartStatusMiddleware");
 
 mongoose.connect("mongodb://127.0.0.1:27017/projekt-silownia");
 

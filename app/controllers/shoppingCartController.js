@@ -5,18 +5,12 @@ module.exports = {
     const cartProducts = res.locals.carts;
     const cartTotal = res.locals.cartTotal;
 
-    console.log(cartTotal);
-
     res.render("customerViews/shoppingCartView", {
       cartProducts: cartProducts,
       cartProductCount: res.locals.cartProductCount,
-      cartTotal: cartTotal
+      cartTotal: cartTotal,
     });
-  } /* )
-      .catch((err) => {
-        res.send(err);
-      });
-  }, */,
+  },
 
   addToCart: async (req, res) => {
     const userId = req.user ? req.user._id : null;
@@ -56,4 +50,15 @@ module.exports = {
 
     res.redirect("/produkty");
   },
+
+  /* delete: (req, res) => {
+    const { productId } = req.params;
+    ProductId.findByIdAndDelete(req.params.id)
+      .then(() => {
+        res.redirect("/koszyk");
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  }, */
 };

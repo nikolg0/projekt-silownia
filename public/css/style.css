@@ -2,11 +2,13 @@ body {
   font-family: "Oswald", sans-serif;
   font-weight: 500;
 
-  /* background-image: url("/images/gym1.jpg");
-  background-color: #000000;
-  background-position: center;
+  background-image: url("/images/bg.png");
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
+}
+
+.table {
+  --bs-table-bg: transparent;
 }
 
 .nav {
@@ -14,6 +16,7 @@ body {
   padding: 10px 0 15px 0;
   display: flex;
   justify-content: space-around;
+  border-bottom: 1px solid #d2d2d2;
 }
 
 .logo {

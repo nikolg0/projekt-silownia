@@ -2,7 +2,6 @@
   <thead>
     <tr>
       <th>Produkt</th>
-      <th></th>
       <th>Cena</th>
       <th>Ilość</th>
     </tr>
@@ -11,17 +10,20 @@
   <tbody class="main-list">
     {{#each cartProducts}}
       <tr>
-        <td class="main-pagetd"><img src="/uploads/{{images}}" /></td>
-        <td class="main-pagetd">{{name}}</td>
+        <td class="main-pagetd">{{name}}<img src="/uploads/{{images}}" /></td>
         <td>{{price}} zł</td>
-        <td class="main-pagetd">{{quantity}}</td>
-        <td>
-          <a href="/produkty">Kontynuuj zakupy</a>
-        </td>
-
+        <td><input
+            type="number"
+            name="quantity"
+            value="{{quantity}}"
+            min="{{quantity}}"
+          /></td>
+        <td><a href="/usun">Usuń z koszyka</a></td>
       </tr>
     {{/each}}
-    <tr><td>Suma {{cartTotal}}</td>
-      <td> <a href="/kasa">Przejdź do kasy</a></td></tr>
+    <tr><td>Suma {{cartTotal}} zł</td>
+      <td><a href="/produkty">Kontynuuj zakupy</a></td>
+      <td> <a href="/kasa">Przejdź do kasy</a></td>
+    </tr>
   </tbody>
 </table>
