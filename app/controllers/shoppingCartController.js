@@ -51,14 +51,26 @@ module.exports = {
     res.redirect("/produkty");
   },
 
-  /* delete: (req, res) => {
-    const { productId } = req.params;
-    ProductId.findByIdAndDelete(req.params.id)
+  delete: (req, res) => {
+    const { cartId, productId } = req.params;
+
+    ShoppingCart.findById(cartId)
+      .then((cart) => {
+        if (!cart) {
+          return res.status(404).sen("Nie znaleziono koszyka.");
+        }
+
+        cart.products = cart.products.filter(
+          (product) => product.productId.toString() !== productId
+        );
+
+        return cart.save();
+      })
       .then(() => {
         res.redirect("/koszyk");
       })
       .catch((err) => {
         res.send(err);
       });
-  }, */
+  },
 };

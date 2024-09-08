@@ -16,6 +16,6 @@ router.post("/do-koszyka", addToCart);
 
 router.get("/koszyk", cartStatus(), shoppingCartController.index);
 
-/* router.get("/usun", shoppingCartController.delete); */
+router.get("/koszyk/:cartId/product/:productId", shoppingCartController.delete);
 
 module.exports = router;

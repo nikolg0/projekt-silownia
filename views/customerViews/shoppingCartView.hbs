@@ -18,12 +18,18 @@
             value="{{quantity}}"
             min="{{quantity}}"
           /></td>
-        <td><a href="/usun">Usuń z koszyka</a></td>
+        <td><a href="/koszyk/{{cartId}}/product/{{this.productId}}">Usuń z
+            koszyka</a></td>
+      </tr>
+
+      <tr>
+        <th>Podsumowanie koszyka</th>
+      </tr>
+      <tr>
+        <td>Suma {{cartTotal}} zł</td>
+        <td><a href="/produkty">Kontynuuj zakupy</a></td>
+        <td> <a href="/kasa">Przejdź do kasy</a></td>
       </tr>
     {{/each}}
-    <tr><td>Suma {{cartTotal}} zł</td>
-      <td><a href="/produkty">Kontynuuj zakupy</a></td>
-      <td> <a href="/kasa">Przejdź do kasy</a></td>
-    </tr>
   </tbody>
 </table>
