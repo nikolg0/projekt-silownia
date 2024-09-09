@@ -16,6 +16,10 @@ router.post("/do-koszyka", addToCart);
 
 router.get("/koszyk", cartStatus(), shoppingCartController.index);
 
+router.get("/kasa", cartStatus(), (req, res) => {
+  res.render("customerViews/placingOrderView");
+});
+
 router.get("/koszyk/:cartId/product/:productId", shoppingCartController.delete);
 
 module.exports = router;

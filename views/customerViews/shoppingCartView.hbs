@@ -18,18 +18,28 @@
             value="{{quantity}}"
             min="{{quantity}}"
           /></td>
-        <td><a href="/koszyk/{{cartId}}/product/{{this.productId}}">Usuń z
+        <td><form action="/koszyk/{{cartId}}/product/{{this.productId}}">Usuń z
             koszyka</a></td>
       </tr>
-
-      <tr>
-        <th>Podsumowanie koszyka</th>
-      </tr>
-      <tr>
-        <td>Suma {{cartTotal}} zł</td>
-        <td><a href="/produkty">Kontynuuj zakupy</a></td>
-        <td> <a href="/kasa">Przejdź do kasy</a></td>
-      </tr>
-    {{/each}}
+ {{/each}}
   </tbody>
 </table>
+
+<div class="shipment">
+  <h2>Podsumowanie koszyka<h2>
+    <p>Kwota {{cartTotal}} zł</p>
+    <h3>Wysyłka</h3>
+    <form>
+  <input type="radio" id="pickup" name="shipment" value="pickup">
+  <label for="pickup">Punkt odbioru 9.00zł</label><br>
+  <input type="radio" id="apm" name="shipment" value="APM">
+  <label for="apm">Paczkomat 11.90zł</label><br>
+  <input type="radio" id="delivery-man" name="shipment" value="delivery-man">
+  <label for="delivery-man">Przesyłka kurierska 14.90zł</label><br>
+   <input type="radio" id="delivery-man-two" name="shipment" value="delivery-man-two">
+  <label for="delivery-man-two">Przesyłka kurierska za pobraniem 16.90zł</label>
+</form><br><br><br>
+                <a href="/kasa">Przejdź do kasy</a><br>
+                <a href="/produkty">Kontynuuj zakupy</a>
+</div>
+
