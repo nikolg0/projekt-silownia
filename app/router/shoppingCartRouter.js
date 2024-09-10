@@ -14,12 +14,19 @@ router.get("/", cartStatus(), (req, res) => {
 
 router.post("/do-koszyka", addToCart);
 
+router.get(
+  "/koszyk/:cartId/product/:productId",
+  shoppingCartController.deleteProduct
+);
+
 router.get("/koszyk", cartStatus(), shoppingCartController.index);
 
-router.get("/kasa", cartStatus(), (req, res) => {
-  res.render("customerViews/placingOrderView");
-});
+router.get("/zamowienie", cartStatus(), (req, res) => {
+  const cartProducts = res.locals.carts;
 
-router.get("/koszyk/:cartId/product/:productId", shoppingCartController.delete);
+  res.render("customerViews/placingOrderView", {
+    cartProducts: cartProducts,
+  });
+});
 
 module.exports = router;

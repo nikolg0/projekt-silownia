@@ -13,20 +13,14 @@ const ProductOrder = new mongoose.Schema({
     email: String,
     phoneNumber: Number,
   },
-  products: [
+  productsIds: [
     {
-      productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-      },
-      quantity: {
-        type: Number,
-        required: true,
-        default: 1,
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ProductIds",
     },
   ],
   shippingAddress: {
+    country: String,
     street: String,
     city: String,
     zipcode: String,

@@ -2,10 +2,15 @@ const ShoppingCart = require("../models/ShoppingCart");
 
 module.exports = {
   index: async (req, res) => {
+    const cartId = req.cookies.cartId;
     const cartProducts = res.locals.carts;
     const cartTotal = res.locals.cartTotal;
 
+    console.log("cartId", cartId);
+    console.log("cartProducts", cartProducts);
+
     res.render("customerViews/shoppingCartView", {
+      cartId: cartId,
       cartProducts: cartProducts,
       cartProductCount: res.locals.cartProductCount,
       cartTotal: cartTotal,
@@ -51,7 +56,7 @@ module.exports = {
     res.redirect("/produkty");
   },
 
-  delete: (req, res) => {
+  deleteProduct: (req, res) => {
     const { cartId, productId } = req.params;
 
     ShoppingCart.findById(cartId)

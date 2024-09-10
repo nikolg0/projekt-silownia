@@ -18,8 +18,10 @@
             value="{{quantity}}"
             min="{{quantity}}"
           /></td>
-        <td><form action="/koszyk/{{cartId}}/product/{{this.productId}}">Usuń z
-            koszyka</a></td>
+
+        <td>{{#if this.productId._id}}<a href="/koszyk/{{../cartId}}/product/{{this.productId._id}}" onclick="return confirm('Czy na pewno chcesz usunąć produkt z koszyka?');"> Usuń z
+            koszyka</a>{{else}}
+            <span>nie ma ID produktu</span>{{/if}}</td>
       </tr>
  {{/each}}
   </tbody>
@@ -39,7 +41,7 @@
    <input type="radio" id="delivery-man-two" name="shipment" value="delivery-man-two">
   <label for="delivery-man-two">Przesyłka kurierska za pobraniem 16.90zł</label>
 </form><br><br><br>
-                <a href="/kasa">Przejdź do kasy</a><br>
+                <a href="/zamowienie">Przejdź do kasy</a><br><br>
                 <a href="/produkty">Kontynuuj zakupy</a>
 </div>
 
