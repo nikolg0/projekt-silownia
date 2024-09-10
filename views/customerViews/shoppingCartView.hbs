@@ -19,7 +19,7 @@
             min="{{quantity}}"
           /></td>
 
-        <td>{{#if this.productId._id}}<a href="/koszyk/{{../cartId}}/product/{{this.productId._id}}" onclick="return confirm('Czy na pewno chcesz usunąć produkt z koszyka?');"> Usuń z
+        <td>{{#if this.productId}}<a href="/koszyk/{{../cartId}}/product/{{this.productId}}" onclick="return confirm('Czy na pewno chcesz usunąć produkt z koszyka?');"> Usuń z
             koszyka</a>{{else}}
             <span>nie ma ID produktu</span>{{/if}}</td>
       </tr>

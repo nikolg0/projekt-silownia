@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 
 const TicketOrder = new mongoose.Schema({
   date: Date,
-  userId: String,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   ticketsIds: [
     {
       type: mongoose.Schema.Types.ObjectId,
