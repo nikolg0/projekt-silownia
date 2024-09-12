@@ -19,6 +19,11 @@ const ShoppingCart = new mongoose.Schema(
         },
       },
     ],
+
+    shipmentOption: {
+      price: Number,
+    },
+
     active: {
       type: Boolean,
       default: true,

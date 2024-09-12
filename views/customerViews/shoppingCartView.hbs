@@ -19,9 +19,11 @@
             min="{{quantity}}"
           /></td>
 
-        <td>{{#if this.productId}}<a href="/koszyk/{{../cartId}}/product/{{this.productId}}" onclick="return confirm('Czy na pewno chcesz usunąć produkt z koszyka?');"> Usuń z
-            koszyka</a>{{else}}
-            <span>nie ma ID produktu</span>{{/if}}</td>
+        <td><form action="/koszyk/{{../cartId}}/product/{{_id}}" method="POST">
+        <input type="hidden" name="delete" value="delete">
+        <button type="submit">Usuń z koszyka</button>
+        </form>
+        </td>
       </tr>
  {{/each}}
   </tbody>
@@ -31,16 +33,19 @@
   <h2>Podsumowanie koszyka<h2>
     <p>Kwota {{cartTotal}} zł</p>
     <h3>Wysyłka</h3>
-    <form>
-  <input type="radio" id="pickup" name="shipment" value="pickup">
+    <form action="/koszyk/:cartId" method="POST">
+  <input type="radio" id="pickup" name="shipment" value="9.00">
   <label for="pickup">Punkt odbioru 9.00zł</label><br>
-  <input type="radio" id="apm" name="shipment" value="APM">
+  <input type="radio" id="apm" name="shipment" value="11.90">
   <label for="apm">Paczkomat 11.90zł</label><br>
-  <input type="radio" id="delivery-man" name="shipment" value="delivery-man">
+  <input type="radio" id="delivery-man" name="shipment" value="14.90">
   <label for="delivery-man">Przesyłka kurierska 14.90zł</label><br>
-   <input type="radio" id="delivery-man-two" name="shipment" value="delivery-man-two">
-  <label for="delivery-man-two">Przesyłka kurierska za pobraniem 16.90zł</label>
+   <input type="radio" id="delivery-man-two" name="shipment" value="16.90">
+  <label for="delivery-man-two">Przesyłka kurierska za pobraniem 16.90zł</label><br><br>
+<button type="submit">Przelicz całkowitą kwotę zamówienia</button>
 </form><br><br><br>
+
+<h2>Suma zamówienia: {{totalCost}} zł</h2>
                 <a href="/zamowienie">Przejdź do kasy</a><br><br>
                 <a href="/produkty">Kontynuuj zakupy</a>
 </div>

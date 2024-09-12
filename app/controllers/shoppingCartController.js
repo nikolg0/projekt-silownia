@@ -62,7 +62,7 @@ module.exports = {
     ShoppingCart.findById(cartId)
       .then((cart) => {
         if (!cart) {
-          return res.status(404).sen("Nie znaleziono koszyka.");
+          return res.status(404).send("Nie znaleziono koszyka.");
         }
 
         cart.products = cart.products.filter(
@@ -77,5 +77,14 @@ module.exports = {
       .catch((err) => {
         res.send(err);
       });
+  },
+
+  orderSummary: (req, res) => {
+    res.render("customerViews/shoppingCartView", {
+      cartTotal: res.locals.cartTotal,
+      shippingCost: res.locals.shippingCost,
+      totalCost: res.locals.totalCost,
+      cartId: req.cookies.cartId,
+    });
   },
 };
