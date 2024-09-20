@@ -25,17 +25,19 @@
   <label for="name">Kod pocztowy</label><br /><br />
   <input type="zipcode" id="zipcode" required></input>
   <br /><br />
+
+  <input type="hidden" name="shipment" value="{{shippingCost}}" />
+  <input type="hidden" name="cartId" value="{{cartId}}" />
   <button type="submit">Złóż zamówienie</button></form>
 
   <div class="order"></div>
   <h2>Twoje zamówienie<h2>
-    <h3>Produkt</h3>
+    <h3>Produkty</h3>
     {{#each cartProducts}}
-    <p>{{name}}</p>
+    <p>{{name}} ilość: {{quantity}} cena: {{price}}</p>
     {{/each}}
-    <p>Kwota {{cartTotal}} zł</p>
-    <h3>Wysyłka</h3>
-    <span>Wybrany sposób dostawy 
-      {{!-- trzeba zrobić do tego działający formularz + dodanie kwoty wysyłki do sumy zamówienia --}} </span><br><br>
+    <p>Koszt wysyłki: {{shippingCost}}</p>
+    <p>Suma: {{totalCost}} zł</p>
+    {{!-- trzeba zrobić do tego działający formularz + dodanie kwoty wysyłki do sumy zamówienia --}} </span><br><br>
                 <button>Kupuję i płacę</button>
 </div>

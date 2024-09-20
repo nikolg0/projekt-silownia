@@ -23,14 +23,27 @@ router.post(
 
 router.get("/koszyk", cartStatus(), shoppingCartController.index);
 
-router.get("/zamowienie", cartStatus(), (req, res) => {
-  const cartProducts = res.locals.carts;
+router.get(
+  "/zamowienie",
+  cartStatus(),
+  calculateTotal(),
+  shoppingCartController.summaryOrderView,
 
-  router.post("/koszyk/:cartId", calculateTotal(), orderSummary);
+  (req, res) => {
+    const cartProducts = res.locals.carts;
+    const totalCost = res.locals.totalCost;
+    const shippingCost = res.locals.shippingCost;
+    const cartTotal = res.locals.cartTotal;
 
-  res.render("customerViews/placingOrderView", {
-    cartProducts: cartProducts,
-  });
-});
+    res.render("customerViews/placingOrderView", {
+      cartProducts: cartProducts,
+      totalCost: totalCost,
+      shippingCost: shippingCost,
+      cartTotal: cartTotal,
+    });
+  }
+);
+
+router.post("/koszyk/:cartId", calculateTotal(), cartStatus(), orderSummary);
 
 module.exports = router;

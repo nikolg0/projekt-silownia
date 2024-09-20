@@ -81,10 +81,25 @@ module.exports = {
 
   orderSummary: (req, res) => {
     res.render("customerViews/shoppingCartView", {
+      cartProducts: res.locals.carts,
       cartTotal: res.locals.cartTotal,
       shippingCost: res.locals.shippingCost,
       totalCost: res.locals.totalCost,
       cartId: req.cookies.cartId,
+    });
+  },
+
+  summaryOrderView: (req, res) => {
+    const cartId = req.cookies.cartId;
+
+    console.log("cartID", cartId);
+
+    res.render("customerViews/placingOrderView", {
+      cartId: cartId,
+      cartProducts: res.locals.carts,
+      cartTotal: res.locals.cartTotal,
+      shippingCost: res.locals.shippingCost,
+      totalCost: res.locals.totalCost,
     });
   },
 };
