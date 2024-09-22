@@ -20,8 +20,9 @@ const ShoppingCart = new mongoose.Schema(
       },
     ],
 
-    shipmentOption: {
-      price: Number,
+    shipmentOptionId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ShipmentOption",
     },
 
     active: {

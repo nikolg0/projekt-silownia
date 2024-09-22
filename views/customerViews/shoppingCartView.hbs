@@ -35,20 +35,22 @@
   <h2>Podsumowanie koszyka<h2>
     <p>Kwota {{cartTotal}} zł</p>
     <h3>Wysyłka</h3>
-    <form action="/koszyk/{{cartId}}" method="POST">
-  <input type="radio" id="pickup" name="shipment" value="9.00">
-  <label for="pickup">Punkt odbioru 9.00zł</label><br>
-  <input type="radio" id="apm" name="shipment" value="11.90">
-  <label for="apm">Paczkomat 11.90zł</label><br>
-  <input type="radio" id="delivery-man" name="shipment" value="14.90">
-  <label for="delivery-man">Przesyłka kurierska 14.90zł</label><br>
-   <input type="radio" id="delivery-man-two" name="shipment" value="16.90">
-  <label for="delivery-man-two">Przesyłka kurierska za pobraniem 16.90zł</label><br><br>
+    <form action="/koszyk/{{cartId}}/dostawa" method="POST">
+     {{#each shipmentOptions}}
+  <input type="radio" id="shipment{{_id}}" name="shipment" value="{{_id}}">
+  <label for="shipment{{_id}}">{{name}} - {{cost}}</label><br>
+  <input type="radio" id="optionTwo" name="shipment" value="11.90">
+  <label for="optionTwo">Paczkomat 11.90zł</label><br>
+  <input type="radio" id="optionThree" name="shipment" value="14.90">
+  <label for="optionThree">Przesyłka kurierska 14.90zł</label><br>
+   <input type="radio" id="optionFour" name="shipment" value="16.90">
+  <label for="optionFour">Przesyłka kurierska za pobraniem 16.90zł</label><br><br>
+{{/each}}
 <button type="submit">Przelicz całkowitą kwotę zamówienia</button>
 </form><br><br><br>
 
 <h2>Suma zamówienia: {{totalCost}} zł</h2>
-                <a href="/zamowienie">Przejdź do kasy</a><br><br>
+                <a href="/zamowienie/{{cartId}}">Przejdź do kasy</a><br><br>
                 <a href="/produkty">Kontynuuj zakupy</a>
 </div>
 

@@ -1,6 +1,6 @@
 <h1>Dane płatności</h1>
 
-<form action="/zamowienie" method="POST">
+<form action="/zamowienie/{{cartId}}" method="POST">
   <label for="name">Imię</label><br />
   <input type="text" id="name" name="name" required />
   <br /><br />
@@ -19,6 +19,9 @@
   <label for="name">Ulica</label><br />
   <input type="text" id="street" name="street" required />
   <br /><br />
+  <label for="name">Numer domu/mieszkania</label><br />
+  <input type="text" id="suite" name="suite" required />
+  <br /><br />
   <label for="name">Miasto</label><br /><br />
   <input type="city" id="city" required></input>
   <br /><br />
@@ -34,7 +37,7 @@
   <h2>Twoje zamówienie<h2>
     <h3>Produkty</h3>
     {{#each cartProducts}}
-    <p>{{name}} ilość: {{quantity}} cena: {{price}}</p>
+    <p>{{name}} <br> ilość: {{quantity}} <br> cena: {{price}} zł</p>
     {{/each}}
     <p>Koszt wysyłki: {{shippingCost}}</p>
     <p>Suma: {{totalCost}} zł</p>

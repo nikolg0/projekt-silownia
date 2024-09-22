@@ -6,6 +6,7 @@ const cartStatus = require("../middlewares/cartStatusMiddleware");
 const customerController = require("../controllers/customerController");
 const shoppingCartController = require("../controllers/shoppingCartController");
 const { addToCart } = require("../controllers/shoppingCartController");
+const { addShipment } = require("../controllers/shoppingCartController");
 const { orderSummary } = require("../controllers/shoppingCartController");
 
 router.get("/produkty", cartStatus(), customerController.index);
@@ -23,8 +24,15 @@ router.post(
 
 router.get("/koszyk", cartStatus(), shoppingCartController.index);
 
+router.post(
+  "/koszyk/:cartId/dostawa",
+  shoppingCartController.selectShipmentOption
+);
+
+router.post("/koszyk/:cartId", calculateTotal(), cartStatus(), orderSummary);
+
 router.get(
-  "/zamowienie",
+  "/zamowienie/:cartId",
   cartStatus(),
   calculateTotal(),
   shoppingCartController.summaryOrderView,
@@ -43,7 +51,5 @@ router.get(
     });
   }
 );
-
-router.post("/koszyk/:cartId", calculateTotal(), cartStatus(), orderSummary);
 
 module.exports = router;

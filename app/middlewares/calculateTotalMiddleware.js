@@ -24,7 +24,13 @@ module.exports = () => {
         return total + price * quantity;
       }, 0);
 
-      const shippingCost = parseFloat(req.body.shipment) || 0;
+      const shipmentOptionId = req.body.shipment;
+      let shippingCost = 0;
+
+      if (shipmentOptionId) {
+        const shipmentOption = await ShipmentOption.findById(shipmentOptionId);
+        shippingCost = shipmentOption ? parseFloat(shipmentOption.cost) : 0; // Ustal koszt wysyłki
+      }
 
       console.log("cartotal (numeryczny):", cartTotal);
       console.log("shipping (numeryczny):", shippingCost);

@@ -1,4 +1,5 @@
 const ShoppingCart = require("../models/ShoppingCart");
+const ShipmentOption = require("../models/ShipmentOptions");
 
 module.exports = {
   index: async (req, res) => {
@@ -79,14 +80,50 @@ module.exports = {
       });
   },
 
-  orderSummary: (req, res) => {
-    res.render("customerViews/shoppingCartView", {
-      cartProducts: res.locals.carts,
-      cartTotal: res.locals.cartTotal,
-      shippingCost: res.locals.shippingCost,
-      totalCost: res.locals.totalCost,
-      cartId: req.cookies.cartId,
-    });
+  selectShipmentOption: async (req, res) => {
+    const { shipment } = req.body;
+    const cartId = req.cookies.cartId;
+    try {
+      const cart = ShoppingCart.findById(cartId)
+        .populate("products.productId")
+        .lean();
+
+      if (!cart) {
+        return res.status(404).send("Nie znaleziono koszyka.");
+      }
+
+      const shipmentOption = await ShipmentOptions.findById(shipment);
+
+      if (!shipmentOption) {
+        return res.statys(404).sen("Nie znaleziono opcji wysyłki");
+      }
+
+      cart.shipmentOption = shipment._id;
+      cart.totalCost = cart.cartTotal + shipmentOption.cost;
+
+      await cart.save();
+
+      res.redirect(`/koszyk/${cartId}`);
+    } catch (err) {
+      console.error("Błąd w aktualizacji opcji wysyłki", err);
+    }
+  },
+
+  orderSummary: async (req, res) => {
+    try {
+      const shipmentOptions = await ShipmentOption.find().lean();
+      res.render("customerViews/shoppingCartView", {
+        cartProducts: res.locals.carts,
+        cartTotal: res.locals.cartTotal,
+        shippingCost: res.locals.shippingCost,
+        totalCost: res.locals.totalCost,
+        cartId: req.cookies.cartId,
+        shipmentOptions,
+      });
+    } catch (err) {
+      console.error("Błąd wysylka", err);
+      res.status(500).send("Wystąpił błąd");
+    }
   },
 
   summaryOrderView: (req, res) => {

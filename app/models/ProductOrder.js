@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const ProductOrder = new mongoose.Schema({
   date: Date,
+  cost: Number,
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -13,17 +14,30 @@ const ProductOrder = new mongoose.Schema({
     email: String,
     phoneNumber: Number,
   },
-  productsIds: [
+  products: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "ProductIds",
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+      },
+      quantity: {
+        type: Number,
+        required: true,
+        default: 1,
+      },
     },
   ],
   shippingAddress: {
     country: String,
     street: String,
+    suite: String,
     city: String,
     zipcode: String,
+  },
+
+  shipmentOption: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "ShipmentOption",
   },
 });
 
