@@ -11,10 +11,11 @@ module.exports = {
     console.log("cartProducts", cartProducts);
 
     res.render("customerViews/shoppingCartView", {
-      cartId: cartId,
-      cartProducts: cartProducts,
-      cartProductCount: res.locals.cartProductCount,
-      cartTotal: cartTotal,
+      cartId: req.cookies.cartId,
+      cartProducts: res.locals.carts,
+      cartTotal: res.locals.cartTotal,
+      shippingCost: res.locals.shippingCost,
+      totalCost: res.locals.totalCost,
     });
   },
 
