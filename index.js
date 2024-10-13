@@ -30,6 +30,10 @@ app.use("/auth", userRouter);
 
 app.use("/", shoppingCartRouter);
 
+app.get("/karnet", function (req, res) {
+  res.render("customerViews/ticketView");
+});
+
 app.listen(8008, function () {
   console.log("Serwer działa");
 });
