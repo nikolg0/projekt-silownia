@@ -15,13 +15,14 @@ body {
   background-color: white;
   padding: 10px 0 15px 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   border-bottom: 1px solid #d2d2d2;
 }
 
 .logo {
-  width: 140px;
+  width: 135px;
   margin-top: 8px;
+  margin-left: -15px;
 }
 
 img {
@@ -44,8 +45,7 @@ i {
   font-size: 1.6em;
 }
 
-a,
-span {
+a {
   text-decoration: none;
   color: #1a1a1a;
   font-size: 2em;
@@ -54,7 +54,9 @@ span {
 }
 
 span {
-  position: relative;
+  font-size: 0.8em;
+  position: absolute;
+  top: 47px;
 }
 
 a:hover,
@@ -69,4 +71,13 @@ i:hover {
 .main-list {
   text-align: center;
   font-size: 1.6em;
+}
+
+.ticket {
+  width: 800px;
+  position: absolute;
+  top: 225px;
+  left: 350px;
+  filter: drop-shadow(6px 5px 3px rgb(94, 94, 94));
+  padding-bottom: 100px;
 }
