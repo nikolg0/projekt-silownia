@@ -20,8 +20,8 @@ body {
 }
 
 .logo {
-  width: 160px;
-  padding: 15px;
+  width: 140px;
+  margin-top: 8px;
 }
 
 img {
@@ -44,11 +44,17 @@ i {
   font-size: 1.6em;
 }
 
-a {
+a,
+span {
   text-decoration: none;
   color: #1a1a1a;
   font-size: 2em;
-  padding-top: 40px;
+  height: 50px;
+  margin: 50px 0 50px 0;
+}
+
+span {
+  position: relative;
 }
 
 a:hover,
