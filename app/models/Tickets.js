@@ -1,13 +1,22 @@
 const mongoose = require("mongoose");
 
 const Ticket = new mongoose.Schema({
-  duration: Date,
-  price: Number,
-  packOption: {
-    standard: String,
-    medium: String,
-    deluxe: String,
-  },
+  packOption: [
+    {
+      standard: {
+        duration: Date,
+        price: Number,
+      },
+      deluxe: {
+        duration: Date,
+        price: Number,
+      },
+      ultimate: {
+        duration: Date,
+        price: Number,
+      },
+    },
+  ],
 });
 
 module.exports = mongoose.model("Ticket", Ticket);

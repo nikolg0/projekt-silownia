@@ -1,1 +1,15 @@
+<h1>Karnety</h1>
+
 <img class="ticket" src="/images/karnety.png" alt="ticket" class="ticket" />
+
+<form action="/karnet/kup-karnet" method="POST">
+  <label for="option">Pakiet</label><br /><br />
+  <select id="option" name="option" required>
+    <option value="standard">Pakiet Standard</option>
+    <option value="deluxe">Pakiet Deluxe</option>
+    <option value="ultimate">Pakiet Ultimate</option>
+  </select>
+  <br /><br />
+
+  <button type="submit">Kupuję karnet</button>
+</form>
